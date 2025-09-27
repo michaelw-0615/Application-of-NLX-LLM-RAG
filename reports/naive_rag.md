@@ -25,4 +25,14 @@ The purpose of this step is to design and implement a naive RAG pipeline that se
 - `temperature`: temperature for answer generation, default set to 0.2.
 - `max_ctx_chars`: Maximum answer length, default set to 2000 characters.
 
-## 
+## Data Loading
+Per requirements, the `rag-datasets/rag-mini-wikipedia` dataset is used. Both subsets--`text-corpus` and `question-answer` are loaded, with the former used for embedding, database establishment and query, and the latter used for questioning during evaluation. 
+
+## Text-Based Chunking
+The method `simple_chunks(text, max_chars)` performs chunking on `text-corpus` text segments with a default maximum length of 300. It returns a list of dictionaries `[{id, text}]` which aligns with the distribution of tokens discovered in Step 1. In total, 3,299 id-text pairs will be generated and stored in the local database.
+
+## Embedding and Vector Storage
+`SentenceTransformer(all-MiniLM-L6-v2)` is used to embed chunked text segments with a batch size of 64. We also use L2 normalization to process embedding vectors so that cosine distance could be applied later. Milvus Lite is used to store data as `{id, embeddings, text}` dictionaries, with FLAT indexing to ensure precise query results.
+
+## Retrieval, Prompting and Generation
+The method `retrieve(query, top_k, ef)` is used to search for top-K answers in the format of `[(id, text, score)]` where `score` is derived from cosine similarity. The method `answer_with_context(query, top_k, max_ctx_chars)` uses OpenAI API (currently hard-coded) to generate top-k answers with maximum length `max_ctx_chars`. 

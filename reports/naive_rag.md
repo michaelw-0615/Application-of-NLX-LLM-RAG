@@ -1,7 +1,7 @@
 # Step 2: Naive RAG Implementation and Code Documentation
 
 ## Overview
-The purpose of this step is to design and implement a naive RAG pipeline that serves as the basis for later stages of advanced RAG features. Such a pipeline should be able to perform text data reading from the source dataset, text-based chunking, text embedding, data insertion, OpenAI API call, query and answer generation. 
+The purpose of this step is to design and implement a vanilla RAG pipeline that serves as the basis for later stages of advanced RAG features. Such a pipeline should be able to perform text data reading from the source dataset, text-based chunking, text embedding, data insertion, OpenAI API call, query and answer generation. 
 
 ## Dependencies and Environment
 ### Packages
@@ -36,3 +36,9 @@ The method `simple_chunks(text, max_chars)` performs chunking on `text-corpus` t
 
 ## Retrieval, Prompting and Generation
 The method `retrieve(query, top_k, ef)` is used to search for top-K answers in the format of `[(id, text, score)]` where `score` is derived from cosine similarity. The method `answer_with_context(query, top_k, max_ctx_chars)` uses OpenAI API (currently hard-coded) to generate top-k answers with maximum length `max_ctx_chars`. 
+
+## Error Handling
+Try-except handling of potential errors is implemented in different phases, including embeddings with all-MiniLM-L6-v2 (`assert dim=384`) and answer generation. Key progresses, such as embedding and tokenization, are printed out for monitoring.
+
+## Limitations and Next Steps
+The current implementation is a naïve RAG pipeline that relies on single-pass retrieval and direct context injection, without advanced techniques such as multi-query expansion, reranking or citation alignment. In the next steps, we would incorporate higher-level functionalities including query rewriting, cross-encoder rerankers, context-packing strategies, metadata filtering, and grounded citations to enhance both accuracy and reliability. Also, comprehensive parametric experiments using either RAGAs or ARES should be implemented to validate the effectiveness of different top-K values, embedding sizes, prompt types and advanced features.

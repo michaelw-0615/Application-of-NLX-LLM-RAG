@@ -1,0 +1,3 @@
+context_precision_macro,context_recall_macro,context_precision_micro,context_recall_micro,n_samples_scored
+0.16,0.16,0.16,0.16,50
+0.04800000000000001,0.24,0.048,0.24,50

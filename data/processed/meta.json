@@ -1,0 +1,10 @@
+{
+  "embedding_model": "sentence-transformers/all-MiniLM-L6-v2",
+  "dim": 384,
+  "n_chunks": 4046,
+  "chunk_chars": 600,
+  "dataset": "rag-datasets/rag-mini-wikipedia",
+  "config": "text-corpus",
+  "split": "passages",
+  "text_column": "passage"
+}

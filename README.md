@@ -6,7 +6,7 @@ This is a project repository for *Assignment 2: Ground the Domain - From Naive R
 - To reproduce each step using the Jupyter notebooks, simply download the respective files from `./notebooks`, upload to Google Colab or a local IDE to start running.
 - To run each step as Python files, download the respective files from  `./src` and execute the following commands in PowerShell:
 ```powershell
-pip install datasets evaluate numpy pandas matplotlib ragas "langchain-openai>=0.1.7" transformers sentence-transformers pymilvus faiss-cpu
+pip install datasets evaluate numpy pandas matplotlib ragas "langchain-openai>=0.1.7" transformers sentence-transformers pymilvus faiss-cpu \\
 python <file_path>/<file_name>.py
 
 
